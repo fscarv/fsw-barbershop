@@ -7,6 +7,7 @@ import { db } from "@/lib/prisma";
 import BarbershopItem from "./_components/barbershop-item";
 
 export default async function Home() {
+  const formattedDate = format(new Date(), "EEEE',' dd 'de' MMMM", { locale: ptBR });
   const barbershops = await db.barbershop.findMany({});
 
   return (
@@ -14,11 +15,7 @@ export default async function Home() {
       <Header />
       <div className="px-5 pt-5">
         <h2 className="text-xl font-bold">Olá, Fernando!</h2>
-        <p className="capitalize text-sm">
-          {format(new Date(), "EEEE',' dd 'de' MMMM", {
-            locale: ptBR,
-          })}
-        </p>
+        <p className="capitalize text-sm">{formattedDate}</p>
       </div>
 
       <div className="px-5 mt-6">
